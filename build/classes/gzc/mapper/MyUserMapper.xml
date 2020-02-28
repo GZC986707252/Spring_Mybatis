@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- 整合后，namespace需要改成 相应的dao接口进行绑定，才能进行映射-->
+<mapper namespace="gzc.dao.MyUserDao">
+	 <!-- 根据uid 查询一个用户信息 -->
+	 <select id="selectUserById" resultType="gzc.model.MyUser" parameterType="Integer">
+	 	select * from myuser where uid = #{uid}
+	 </select>
+	 
+	 <!-- 查询全部用户信息 -->
+	 <select id="selectAllUser" resultType="gzc.model.MyUser">
+	 	select * from myuser
+	 </select>
+	 
+	 <!-- 添加一个用户  #{uname} 为gzc.model.MyUser的属性值-->
+	 <insert id="addUser" parameterType="gzc.model.MyUser">
+	 insert into myuser values(#{uid},#{uname},#{usex})
+	 </insert>
+	 
+	 <!-- 修改一个用户 -->
+	 <update id="updateUser" parameterType="gzc.model.MyUser">
+	 	update myuser set uname=#{uname},usex=#{usex} where uid=#{uid}
+	 </update>
+	 
+	 <!-- 删除一个用户 -->
+	 <delete id="deleteUser" parameterType="gzc.model.MyUser">
+	 delete from myuser where uid=#{uid}
+	 </delete>
+</mapper>
